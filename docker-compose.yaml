@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:16.4-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+      - LC_COLLATE=es_ES.UTF-8
+      - LC_CTYPE=es_ES.UTF-8
+      - LANG=es_ES.UTF-8
+      - LANGUAGE=es_ES:es
+    volumes:
+      - ./init-db.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
