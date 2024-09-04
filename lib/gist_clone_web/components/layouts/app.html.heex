@@ -1,26 +1,48 @@
-<header class="px-4 sm:px-6 lg:px-8">
-  <div class="flex items-center justify-between border-b border-zinc-100 py-3 text-sm">
-    <div class="flex items-center gap-4">
-      <a href="/">
-        <img src={~p"/images/logo.svg"} width="36" />
-      </a>
-      <p class="bg-brand/5 text-brand rounded-full px-2 font-medium leading-6">
-        v<%= Application.spec(:phoenix, :vsn) %>
-      </p>
-    </div>
-    <div class="flex items-center gap-4 font-semibold leading-6 text-zinc-900">
-      <a href="https://twitter.com/elixirphoenix" class="hover:text-zinc-700">
-        @elixirphoenix
-      </a>
-      <a href="https://github.com/phoenixframework/phoenix" class="hover:text-zinc-700">
-        GitHub
-      </a>
-      <a
-        href="https://hexdocs.pm/phoenix/overview.html"
-        class="rounded-lg bg-zinc-100 px-2 py-1 hover:bg-zinc-200/80"
-      >
-        Get Started <span aria-hidden="true">&rarr;</span>
-      </a>
+<header class="flex justify-between items-center px-6 py-3 bg-gistPurple-dark">
+  <div class="flex gap-4 items-center">
+    <a class="flex items-center gap-1" href={~p"/"}>
+      <img src="/images/gist-logo.svg" class="h-8 w-auto" />
+      <h1 class="font-black text-white text-2xl">Gist</h1>
+    </a>
+    <input
+      type="text"
+      placeholder="Search..."
+      class="text-white bg-gistDark border border-gistPurple rounded-xl focus:ring-gistPurple-light focus:border-gistPurple-light"
+    />
+  </div>
+
+  <div class="relative">
+    <button
+      class="cursor-default"
+      phx-click={JS.toggle(to: "#menu", in: "fade-in-scale", out: "fade-out-scale")}
+    >
+      <.icon name="hero-user" class="text-white" />
+    </button>
+    <div
+      id="menu"
+      class="absolute text-white bg-gistPurple-dark top-8 right-0 shadow-gistDark-light py-3 px-4 border border-gistPurple-light min-w-48 rounded-xl"
+      hidden="true"
+      phx-click-away={JS.toggle(to: "#menu", in: "fade-in-scale", out: "fade-out-scale")}
+    >
+      <div :if={@current_user} class="flex flex-col gap-1">
+        <span class="text-gistPurple-light">
+          Hello, <%= @current_user.email %>!
+        </span>
+
+        <hr class="h-px my-2 bg-gistPurple-light border-0 -mx-4" />
+
+        <.link href={~p"/users/settings"}>
+          <.icon name="hero-adjustments-horizontal" class="text-white" /> Settings
+        </.link>
+        <.link href={~p"/users/log_out"} method="delete">
+          <.icon name="hero-arrow-left-start-on-rectangle" class="text-white" /> Sign out
+        </.link>
+      </div>
+      <div :if={!@current_user}>
+        <.link href={~p"/users/log_in"} class="flex gap-1 items-center">
+          <.icon name="hero-arrow-left-end-on-rectangle" class="text-white" /> Sign in
+        </.link>
+      </div>
     </div>
   </div>
 </header>
