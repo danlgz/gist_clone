@@ -202,9 +202,9 @@ defmodule GistCloneWeb.CoreComponents do
   def simple_form(assigns) do
     ~H"""
     <.form :let={f} for={@for} as={@as} {@rest}>
-      <div class="mt-10 space-y-8 bg-white">
+      <div class="mt-10 space-y-6">
         <%= render_slot(@inner_block, f) %>
-        <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-6">
+        <div :for={action <- @actions} class="mt-2 flex items-center justify-end gap-6">
           <%= render_slot(action, f) %>
         </div>
       </div>
@@ -232,7 +232,7 @@ defmodule GistCloneWeb.CoreComponents do
       type={@type}
       class={[
         "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3",
-        "text-sm font-semibold leading-6 text-white active:text-white/80",
+        "text-md font-semibold leading-6 text-white active:text-white/80",
         @class
       ]}
       {@rest}
@@ -272,6 +272,7 @@ defmodule GistCloneWeb.CoreComponents do
   attr :name, :any
   attr :label, :string, default: nil
   attr :value, :any
+  attr :class, :string, default: ""
 
   attr :type, :string,
     default: "text",
@@ -355,9 +356,11 @@ defmodule GistCloneWeb.CoreComponents do
         id={@id}
         name={@name}
         class={[
-          "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6 min-h-[6rem]",
-          @errors == [] && "border-zinc-300 focus:border-zinc-400",
-          @errors != [] && "border-rose-400 focus:border-rose-400"
+          "mt-2 block w-full rounded-lg text-white sm:text-sm sm:leading-6 bg-gistDark border rounded-xl min-h-[6rem]",
+          @errors == [] &&
+            "border-gistPurple focus:ring-gistPurple-light focus:border-gistPurple-light",
+          @errors != [] && "border-rose-400 focus:border-rose-400",
+          @class
         ]}
         {@rest}
       ><%= Phoenix.HTML.Form.normalize_value("textarea", @value) %></textarea>
@@ -377,9 +380,11 @@ defmodule GistCloneWeb.CoreComponents do
         id={@id}
         value={Phoenix.HTML.Form.normalize_value(@type, @value)}
         class={[
-          "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
-          @errors == [] && "border-zinc-300 focus:border-zinc-400",
-          @errors != [] && "border-rose-400 focus:border-rose-400"
+          "mt-2 block w-full rounded-lg text-white sm:text-sm sm:leading-6 bg-gistDark border rounded-xl",
+          @errors == [] &&
+            "border-gistPurple focus:ring-gistPurple-light focus:border-gistPurple-light",
+          @errors != [] && "border-rose-400 focus:border-rose-400",
+          @class
         ]}
         {@rest}
       />
@@ -396,7 +401,7 @@ defmodule GistCloneWeb.CoreComponents do
 
   def label(assigns) do
     ~H"""
-    <label for={@for} class="block text-sm font-semibold leading-6 text-zinc-800">
+    <label for={@for} class="block text-sm font-semibold text-gistPurple-light">
       <%= render_slot(@inner_block) %>
     </label>
     """

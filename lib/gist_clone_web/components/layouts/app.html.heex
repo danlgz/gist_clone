@@ -1,7 +1,7 @@
 <header class="flex justify-between items-center px-6 py-3 bg-gistPurple-dark">
   <div class="flex gap-4 items-center">
     <a class="flex items-center gap-1" href={~p"/"}>
-      <img src="/images/gist-logo.svg" class="h-8 w-auto" />
+      <img src="/images/gist-logo.svg" class="h-auto w-7" />
       <h1 class="font-black text-white text-2xl">Gist</h1>
     </a>
     <input
@@ -47,7 +47,7 @@
   </div>
 </header>
 <main class="px-4 py-20 sm:px-6 lg:px-8">
-  <div class="mx-auto max-w-2xl">
+  <div class="mx-auto max-w-screen-xl">
     <.flash_group flash={@flash} />
     <%= @inner_content %>
   </div>

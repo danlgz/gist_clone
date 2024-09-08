@@ -1,0 +1,33 @@
+<div>
+  <.simple_form class="flex flex-col" for={@form} phx-submit="save" phx-change="validate">
+    <.input
+      field={@form[:description]}
+      label="Description"
+      placeholder="Gist description..."
+      autocomplete="off"
+      phx-debounce="500"
+    />
+    <div class="bg-gistDark-dark rounded-lg border border-gistPurple">
+      <div class="p-4">
+        <.input
+          placeholder="my_file.ex (include extension for higlights)"
+          field={@form[:name]}
+          autocomplete="off"
+          class="max-w-xl"
+          phx-debounce="500"
+        />
+      </div>
+      <.input
+        field={@form[:markup_text]}
+        type="textarea"
+        placeholder="Content..."
+        class="rounded-tr-none rounded-tl-none min-h-96"
+        phx-debounce="500"
+      />
+    </div>
+
+    <:actions>
+      <.button type="submit" phx-disable-with="Creating...">Create</.button>
+    </:actions>
+  </.simple_form>
+</div>
