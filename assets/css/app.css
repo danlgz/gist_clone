@@ -3,3 +3,8 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+
+.hljs {
+    padding: 0 !important;
+    background: transparent !important;
+}

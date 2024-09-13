@@ -37,6 +37,8 @@ defmodule GistClone.Gists do
   """
   def get_gist!(id), do: Repo.get!(Gist, id)
 
+  def get_gist_with_user!(id), do: Repo.get!(Gist, id) |> Repo.preload(:user)
+
   @doc """
   Creates a gist.
 

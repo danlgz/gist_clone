@@ -231,7 +231,7 @@ defmodule GistCloneWeb.CoreComponents do
     <button
       type={@type}
       class={[
-        "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3",
+        "phx-submit-loading:opacity-75 rounded-lg bg-gistPurple hover:bg-gistPurple/95 active:bg-gistPurple/90 py-2 px-4",
         "text-md font-semibold leading-6 text-white active:text-white/80",
         @class
       ]}
@@ -356,7 +356,7 @@ defmodule GistCloneWeb.CoreComponents do
         id={@id}
         name={@name}
         class={[
-          "mt-2 block w-full rounded-lg text-white sm:text-sm sm:leading-6 bg-gistDark border rounded-xl min-h-[6rem]",
+          "mt-2 block w-full rounded-lg text-white sm:text-sm sm:leading-6 bg-gistDark border rounded-xl min-h-[6rem] resize-none",
           @errors == [] &&
             "border-gistPurple focus:ring-gistPurple-light focus:border-gistPurple-light",
           @errors != [] && "border-rose-400 focus:border-rose-400",

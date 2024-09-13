@@ -1,0 +1,47 @@
+<div class="flex items-center justify-between text-white">
+  <div>
+    <h1 class="text-white font-bold flex gap-2">
+      <span class="hover:underline cursor-pointer"><%= @gist.user.email %></span>
+      <span>/</span>
+      <.link href={~p"/gist/#{@gist.id}"} class="hover:underline"><%= @gist.name %></.link>
+    </h1>
+    <span class="text-white">
+      <%= @gist.inserted_at %>
+    </span>
+  </div>
+
+  <div class="flex place-items-center">
+    <span class="flex items-center gap-2 rounded-tl-lg rounded-bl-lg border px-3 h-10 cursor-default">
+      <.icon name="hero-bookmark" class="text-white h-6" /> Save
+    </span>
+    <span class="px-3 h-10 flex items-center justify-center border border-l-0 rounded-tr-lg rounded-br-lg">
+      0
+    </span>
+  </div>
+</div>
+
+<div class="mt-12">
+  <div class="text-white bg-gistDark-dark rounded-lg rounded-bl-none rounded-br-none border border-gistPurple px-6 py-4 flex justify-between">
+    <span><%= @gist.name %></span>
+    <div class="flex justify-center items-center">
+      <.icon :if={@gist.user.id == @current_user.id} name="hero-trash" class="text-white h-4" />
+      <.icon :if={@gist.user.id == @current_user.id} name="hero-pencil" class="text-white h-4" />
+      <.icon name="hero-document-duplicate" class="text-white h-4" />
+    </div>
+  </div>
+  <div class="bg-gistDark-dark rounded-lg rounded-tr-none rounded-tl-none text-white border border-gistPurple border-t-0 flex">
+    <div class="py-4 bg-gistDark-dark w-14 flex flex-col pr-4">
+      <%= for n <- 1..@num_of_lines do %>
+        <span class="opacity-70 leading-6 text-right"><%= n %></span>
+      <% end %>
+    </div>
+    <div
+      class="p-4 pl-0 overflow-x-auto flex-1"
+      file-name={@gist.name}
+      phx-hook="Highlight"
+      id="highlight-code"
+    >
+      <pre><code class="leading-6"><%= @gist.markup_text %></code></pre>
+    </div>
+  </div>
+</div>

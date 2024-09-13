@@ -9,8 +9,9 @@ defmodule GistCloneWeb.CreateGistLive do
 
   def handle_event("save", %{"gist" => gist_params}, socket) do
     case Gists.create_gist(socket.assigns.current_user, gist_params) do
-      {:ok, _gist} ->
-        {:noreply, socket |> put_flash(:info, "Gist created!") |> redirect(to: ~p"/")}
+      {:ok, gist} ->
+        {:noreply,
+         socket |> put_flash(:info, "Gist created!") |> redirect(to: ~p"/gist/#{gist.id}")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, form: to_form(changeset))}
