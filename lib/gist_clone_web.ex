@@ -85,6 +85,7 @@ defmodule GistCloneWeb do
       import Phoenix.HTML
       # Core UI components and translation
       import GistCloneWeb.CoreComponents
+      import GistCloneWeb.GistComponents
       import GistCloneWeb.Gettext
 
       # Shortcut for generating JS commands

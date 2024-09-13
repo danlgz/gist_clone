@@ -23,4 +23,10 @@ defmodule GistCloneWeb.CreateGistLive do
 
     {:noreply, assign(socket, form: form)}
   end
+
+  def render(assigns) do
+    ~H"""
+    <.gist_form for={@form} phx-submit="save" phx-change="validate" />
+    """
+  end
 end
