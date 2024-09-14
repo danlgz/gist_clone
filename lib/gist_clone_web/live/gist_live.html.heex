@@ -25,7 +25,9 @@
     <span><%= @gist.name %></span>
     <div class="flex justify-center items-center">
       <.icon :if={@gist.user.id == @current_user.id} name="hero-trash" class="text-white h-4" />
-      <.icon :if={@gist.user.id == @current_user.id} name="hero-pencil" class="text-white h-4" />
+      <.link href={~p"/gist/#{@gist.id}/edit"}>
+        <.icon :if={@gist.user.id == @current_user.id} name="hero-pencil" class="text-white h-4" />
+      </.link>
       <.icon name="hero-document-duplicate" class="text-white h-4" />
     </div>
   </div>

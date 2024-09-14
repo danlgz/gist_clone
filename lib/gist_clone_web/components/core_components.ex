@@ -356,7 +356,7 @@ defmodule GistCloneWeb.CoreComponents do
         id={@id}
         name={@name}
         class={[
-          "mt-2 block w-full rounded-lg text-white sm:text-sm sm:leading-6 bg-gistDark border rounded-xl min-h-[6rem] resize-none",
+          "mt-2 block w-full rounded-lg text-white sm:text-sm sm:leading-6 bg-gistDark border rounded-xl min-h-[55vh] resize-none",
           @errors == [] &&
             "border-gistPurple focus:ring-gistPurple-light focus:border-gistPurple-light",
           @errors != [] && "border-rose-400 focus:border-rose-400",

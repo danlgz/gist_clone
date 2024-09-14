@@ -33,7 +33,7 @@ defmodule GistCloneWeb.GistComponents do
           field={@for[:markup_text]}
           type="textarea"
           placeholder="Content..."
-          class="rounded-md rounded-tr-none rounded-tl-none min-h-96 border-0 border-t"
+          class="rounded-md rounded-tr-none rounded-tl-none border-0 border-t"
           phx-debounce="500"
         />
       </div>
