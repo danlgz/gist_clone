@@ -24,7 +24,12 @@
   <div class="text-white bg-gistDark-dark rounded-lg rounded-bl-none rounded-br-none border border-gistPurple px-6 py-4 flex justify-between">
     <span><%= @gist.name %></span>
     <div class="flex justify-center items-center">
-      <.icon :if={@gist.user.id == @current_user.id} name="hero-trash" class="text-white h-4" />
+      <.icon
+        :if={@gist.user.id == @current_user.id}
+        name="hero-trash"
+        class="text-white h-4"
+        phx-click={show_modal("delete_gist_modal")}
+      />
       <.link href={~p"/gist/#{@gist.id}/edit"}>
         <.icon :if={@gist.user.id == @current_user.id} name="hero-pencil" class="text-white h-4" />
       </.link>
@@ -47,3 +52,12 @@
     </div>
   </div>
 </div>
+
+<.modal id="delete_gist_modal" class="flex justify-center items-center flex-col gap-2">
+  <h1 class="text-xl">Are you sure to delete this Gist?</h1>
+  <p class="opacity-70">This action is permanent</p>
+  <div class="flex gap-4 mt-4">
+    <.button phx-click={hide_modal("delete_gist_modal")}>Cancel</.button>
+    <.button phx-click="delete_gist" phx-disable-with="Deleting...">Yes, delete</.button>
+  </div>
+</.modal>

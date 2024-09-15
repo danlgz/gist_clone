@@ -11,4 +11,16 @@ defmodule GistCloneWeb.GistLive do
 
     {:ok, socket}
   end
+
+  def handle_event("delete_gist", _, socket) do
+    gist = socket.assigns.gist
+
+    case Gists.delete_gist(gist) do
+      {:ok, _gist} ->
+        {:noreply, socket |> redirect(to: ~p"/")}
+
+      {:error, %Ecto.Changeset{}} ->
+        {:noreply, socket |> put_flash(:error, "Gist delete error")}
+    end
+  end
 end
